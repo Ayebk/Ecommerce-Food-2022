@@ -122,7 +122,7 @@ const Home = () => {
 
 
   const adminDemoNav = () => {
-    window.location.assign("https://admin-dashboard-demo123.herokuapp.com/")
+    window.location.assign("https://admin-dashboard-demo-new-26c7b8bddf1e.herokuapp.com/")
   };
 
 

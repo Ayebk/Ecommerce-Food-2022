@@ -199,9 +199,11 @@ const Slider = (props) => {
   const handleClick = (direction) => {
     if (direction === "right") {
       setsliderindex(sliderindex > 0 ? sliderindex - 1 : 2);
-    } else {
+    } 
+    else {
       setsliderindex(sliderindex < 2 ? sliderindex + 1 : 0);
     }
+    console.log(sliders.bgc) 
   };
 
   /**
@@ -214,12 +216,9 @@ const Slider = (props) => {
 
   return (
     <Container>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
-        <ArrowForwardIosIcon
-          style={{ fontSize: "65px", marginLeft: "5px", marginTop: "2px" }}
-        />
-      </Arrow>
-      <Wrapper sliderindex={sliderindex}>
+      
+
+      <Wrapper sliderindex={sliderindex}> 
         {sliders?.map((item) => (
           <Slide bgc={item.bgc} key={item.id}>
             <InfoContainer>
@@ -234,13 +233,10 @@ const Slider = (props) => {
               <Image src={item.img} />
             </ImageContainer>
           </Slide>
+          
         ))}
       </Wrapper>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
-        <ArrowBackIosNewIcon
-          style={{ fontSize: "65px", marginRight: "5px", marginTop: "2px" }}
-        />
-      </Arrow>
+ 
     </Container>
   );
 };
