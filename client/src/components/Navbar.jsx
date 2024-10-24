@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 
 import {
   Badge,
@@ -16,11 +16,10 @@ import {
   logoutProcess,
   logoutProcessReset,
   logoutReset,
-  logoutSuccess,
   resetMes,
 } from "../redux/actions/authActions";
 import { updateCart } from "../redux/actions/cartActions";
-
+import { logoutSuccess } from '../redux/features/authSlice'
 
 //MUI
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
@@ -49,13 +48,17 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 const Container = styled.div`
-  height: 90px;
+  height: 10vh;
   position: sticky;
   top: 0;
   z-index: 99;
   width: 100%;
   background-color: white;
   border-bottom: solid 2px beige;
+  position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
 
   ${tablet({ height: "135px" })};
 `;

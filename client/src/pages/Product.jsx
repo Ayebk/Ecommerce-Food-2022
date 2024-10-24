@@ -226,7 +226,6 @@ const Product = () => {
 
   return (
     <Container>
-      <Navbar />
       <Advertisement />
       <Wrapper>
         <InfoContainer>
@@ -276,7 +275,6 @@ const Product = () => {
         </ImgContainer> :  null}
       </Wrapper>
 
-      <Footer />
     </Container>
   );
 };

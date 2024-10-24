@@ -7,6 +7,7 @@ export const loginUser = async (dispatch, user) => {
   // User loading
   dispatch({ type: ActionTypes.LOGIN_START });
   try {
+
     const res = await publicRequest.post("/auth/login", user);
     localStorage.setItem("token", res.data.accessToken);
     localStorage.setItem("username", res.data.username);
@@ -14,9 +15,11 @@ export const loginUser = async (dispatch, user) => {
     localStorage.setItem("id", res.data._id);
 
     dispatch({ type: ActionTypes.LOGIN_SUCCESS, payload: res.data });
-    return res;
+
+    return res.data;
   } catch (error) {
-    dispatch(returnErrors(error.response.data, error.response.status));
+ 
+    // dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: ActionTypes.AUTH_ERROR });
     dispatch({ type: ActionTypes.ERROR_MESSAGES });
     dispatch({ type: ActionTypes.RESET_MESSAGES });
@@ -26,6 +29,7 @@ export const loginUser = async (dispatch, user) => {
 //Register Success
 export const registerUser = async (dispatch, user) => {
   try {
+
     const res = await publicRequest.post("/auth/register", user);
     dispatch({ type: ActionTypes.REGISTER_SUCCESS, payload: res.data });
 

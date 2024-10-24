@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //SC
@@ -14,6 +13,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/actions/authActions";
 
 import { mobile, laptop, tablet, desktop } from "../responsive";
+import { getCart } from "../redux/actions/cartActions";
+
+//POPUP
+import { toast } from "react-toastify";
+import {useDebounce } from "../hooks/hooks";
 
 const Container = styled.div``;
 
@@ -28,7 +32,7 @@ const Wrapper = styled.div`
   background-color: #a0d3f8;
 `;
 const WrapperContainer = styled.div`
-  height: 70vh;
+  height: 85vh;
   background-color: #a0d3f8;
   border: solid #a0d3f8 8px;
 
@@ -109,21 +113,52 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedUser = useSelector((state) => state.auth);
+  const cartProducts = useSelector((state) => state.cart.products);
+
   let res = null;
+  let timerSet = null;
+
+  const notifyFail = () =>
+    toast.error("אריעה שגיאה אנא בדוק שוב את הפרטים", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    const timeoutRef = useRef(null); // Used to store the timeout reference
+
+
+
+
+
+
 
   let handleSumbit = async (e) => {
     e.preventDefault();
-
-    const res = await loginUser(dispatch, { email, password });
-
-    if (res && loggedUser) {
-      navigate("/");
+    try {
+      await loginUser(dispatch, { email, password }).then((res) => {console.log(res)
+        getCart(dispatch, res._id).then(navigate("/"));
+      });
+    } catch (e){
+      console.log(e)
+      console.log("ddddd")
+      useDebounce(notifyFail,timeoutRef);
     }
   };
 
+
+
+  useEffect(() => {
+    if (loggedUser.id) navigate("/");
+  }, [cartProducts]);
+
+
   return (
     <Container>
-      <Navbar />
       <Advertisement />
 
       <WrapperContainer>
@@ -147,7 +182,6 @@ const Login = () => {
           </Form>
         </Wrapper>
       </WrapperContainer>
-      <Footer />
     </Container>
   );
 };

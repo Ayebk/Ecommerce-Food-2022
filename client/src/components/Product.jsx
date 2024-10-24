@@ -29,13 +29,12 @@ const Container = styled.div`
   ${desktop({
     maxWidth: "250px",
     maxHeight: "450px",
-    minWidth: "auto",
     marginTop: "auto",
     height: "450px",
     objectFit: "scale-down",
   })}
-  ${tablet({ maxWidth: "250px", minWidth: "215px" })}
-    ${mobile({ minWidth: "150px", maxHeight: "366px" })}
+  ${tablet({ maxWidth: "250px", minWidth: "232px" })}
+    ${mobile({  maxHeight: "366px" })}
 `;
 const Main = styled.div`
   ${desktop({
@@ -72,7 +71,7 @@ const Circle = styled.div`
   cursor: pointer;
 
   ${desktop({ right: "0", margin: "0px auto" })}
-  ${mobile({ width: "150px", height: "150px" })}
+  ${mobile({ width: "150px", height: "150px" })} //zIndex:-2
 
 
   &:hover {
@@ -267,15 +266,14 @@ const Product = ({ item, index }) => {
   const [quantity, setQuantity] = useState(1);
   const [openQuantity, SetOpenQuantity] = useState(false);
 
-
-   /**
+  /**
    * Naviation
    */
   function navProduct(id) {
     navigate("/product/" + id);
   }
 
-   /**
+  /**
    * Quantity Product
    */
 
@@ -293,11 +291,12 @@ const Product = ({ item, index }) => {
   };
 
   const handleAddClick = () => {
+
     dispatch(addToCart({ selectedProduct: item, quantity }));
   };
 
   useEffect(() => {
-    if (loggedUser.username) updateCart(dispatch, cart, loggedUser, loggingOut);
+    if (loggedUser.id) updateCart(dispatch, cart, loggedUser, loggingOut);
   }, [cartProducts]);
 
   return (

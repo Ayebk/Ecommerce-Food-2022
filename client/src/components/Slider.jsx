@@ -24,9 +24,11 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   height: 100%;
-  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   transition: all 1.5s ease;
-  transform: translateX(${(props) => props.sliderindex * +100}vw);
+  transform: translateX(${(props) => props.sliderIndex * +100}vw);
 `;
 
 const Slide = styled.div`
@@ -62,7 +64,7 @@ const Arrow = styled.div`
   z-index: 2;
   -webkit-tap-highlight-color: transparent;
 
-  @media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 1500px) {
     left: ${(props) => props.direction === "left" && "100px"};
     right: ${(props) => props.direction === "right" && "100px"};
   }
@@ -173,8 +175,9 @@ const Button = styled.button`
   })};
 `;
 
+
 const Slider = (props) => {
-  const [sliderindex, setsliderindex] = useState(0);
+  const [sliderIndex, setsliderIndex] = useState(0);
   const [sliders, SetSliders] = useState([]);
   const navigate = useNavigate();
 
@@ -198,12 +201,10 @@ const Slider = (props) => {
 
   const handleClick = (direction) => {
     if (direction === "right") {
-      setsliderindex(sliderindex > 0 ? sliderindex - 1 : 2);
-    } 
-    else {
-      setsliderindex(sliderindex < 2 ? sliderindex + 1 : 0);
+      setsliderIndex(sliderIndex > 0 ? sliderIndex - 1 : 2);
+    } else {
+      setsliderIndex(sliderIndex < 2 ? sliderIndex + 1 : 0);
     }
-    console.log(sliders.bgc) 
   };
 
   /**
@@ -216,9 +217,12 @@ const Slider = (props) => {
 
   return (
     <Container>
-      
-
-      <Wrapper sliderindex={sliderindex}> 
+      <Arrow direction="right" onClick={() => handleClick("right")}>
+        <ArrowForwardIosIcon
+          style={{ fontSize: "65px", marginLeft: "5px", marginTop: "2px" }}
+        />
+      </Arrow>
+      <Wrapper sliderIndex={sliderIndex}>
         {sliders?.map((item) => (
           <Slide bgc={item.bgc} key={item.id}>
             <InfoContainer>
@@ -233,12 +237,16 @@ const Slider = (props) => {
               <Image src={item.img} />
             </ImageContainer>
           </Slide>
-          
         ))}
       </Wrapper>
- 
+      <Arrow direction="left" onClick={() => handleClick("left")}>
+        <ArrowBackIosNewIcon
+          style={{ fontSize: "65px", marginRight: "5px", marginTop: "2px" }}
+        />
+      </Arrow>
     </Container>
   );
 };
 
 export default Slider;
+

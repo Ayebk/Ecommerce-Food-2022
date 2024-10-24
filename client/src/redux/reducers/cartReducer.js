@@ -15,7 +15,7 @@ export const cartReducer = (
     case ActionTypes.LOADING_CART:
       return {
         ...state,
-        products: [],
+       
         isLoading: true,
       };
     case ActionTypes.SYNC_DB_CART:

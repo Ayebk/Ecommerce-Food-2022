@@ -72,7 +72,7 @@ const TitleFoundSpan = styled.span`
 
 const Search = () => {
   const products = useSelector(
-    (state) => state.products.productsSearched.products
+    (state) => state.products.productsSearched?.products
   );
   const dispatch = useDispatch();
   const { text } = useParams();
@@ -84,7 +84,6 @@ const Search = () => {
 
   return (
     <Container>
-      <Navbar />
       {products?.length != 0 ? (
         <>
           <TitleFound>
@@ -107,7 +106,6 @@ const Search = () => {
           />
         </>
       )}
-      <Footer />
     </Container>
   );
 };

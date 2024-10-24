@@ -15,7 +15,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../redux/actions/productsActions";
 
-const Container = styled.div``;
+const Container = styled.div`
+`;
 
 const Title = styled.h1`
   color: black;
@@ -76,9 +77,12 @@ const ProductList = () => {
   const brands = ["sweets", "breads", "meats", "drinks", "cheese", "pizza"];
   const [filters, setFilters] = useState({ category: `${category}` });
   const [sort, setSort] = useState("asc");
+  const [products, setProducts] = useState();
+
 
   useEffect(() => {
     getProducts(dispatch, { category });
+    
   }, [filters]);
 
   const handlerFilters = (e) => {
@@ -92,16 +96,17 @@ const ProductList = () => {
     }
   };
 
+
+
   return (
     <Container>
-      <Navbar />
       <Advertisement />
       <Title>מוצרים</Title>
       <WrapperProductList>
         <WrapperFilter>
           <ProductFilter>
             <ProductFilterTitle>בחר מוצר:</ProductFilterTitle>
-            <Select name="category" onChange={handlerFilters}>
+            <Select name="category" onChange={(e) => handlerFilters(e)}>
               <Option selected value="all" disabled>
                 קטגוריה
               </Option>
@@ -113,7 +118,7 @@ const ProductList = () => {
               <Option value="cheese">גבינות</Option>
               <Option value="pizza">פיצות</Option>
             </Select>
-            <Select name="brand" onChange={handlerFilters}>
+            <Select name="brand" onChange={(e) => handlerFilters(e)}>
               <Option selected value="all" disabled>
                 מותג
               </Option>
@@ -134,7 +139,6 @@ const ProductList = () => {
         </WrapperFilter>
       </WrapperProductList>
       <Products category={category} filters={filters} sort={sort} />
-      <Footer />
     </Container>
   );
 };

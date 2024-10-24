@@ -10,8 +10,7 @@ const Container = styled.div`
   background-color: #def1ff;
   padding: 10px;
 
-  top: 50px;
-  position: relative;
+  margin-top: auto;
 
   ${mobile({ flexDirection: "column" })}
 `;

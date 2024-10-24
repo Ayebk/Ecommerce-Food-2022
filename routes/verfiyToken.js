@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const verfityToken = (req, res, next) => {
   const authHeader = req.headers.token;
+
   if (authHeader) {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SEC, (error, user) => {
@@ -17,6 +18,7 @@ const verfityToken = (req, res, next) => {
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
+
   verfityToken(req, res, () => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();

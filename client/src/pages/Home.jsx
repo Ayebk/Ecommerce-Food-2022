@@ -112,13 +112,21 @@ const Home = () => {
   const products = useSelector((state) => state.products.products);
 
   useEffect(() => {
-    if (localStorage.getItem("username") !== null)
+    console.log(loggedUser.id)
+    if (localStorage.getItem("username") !== null){
       getCart(dispatch, loggedUser.id);
-  }, []);
+    }else{
+      lastProducts(dispatch);
+    }
+
+  }, [,loggedUser.id]);
+
+
 
   useEffect(() => {
     lastProducts(dispatch);
   }, [dispatch]);
+
 
 
   const adminDemoNav = () => {
@@ -128,15 +136,14 @@ const Home = () => {
 
   return (
     <Container>
-      <AdminAd>
+      {/* <AdminAd>
         <AdminTitle  onClick={() => adminDemoNav()}>
           לחצו כאן
           <br /> לראות ולחוות את <br />
           <br /> Admin Dashboard <br />
           Demo
         </AdminTitle>
-      </AdminAd>
-      <Navbar />
+      </AdminAd> */}
       <Advertisement />
       <Slider />
       <Categories />
@@ -146,7 +153,6 @@ const Home = () => {
           <Product item={item} key={item.id} />
         ))}
       </ProductsWrapper>
-      <Footer />
     </Container>
   );
 };

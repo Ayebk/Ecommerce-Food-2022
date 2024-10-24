@@ -18,11 +18,12 @@ const routes = {
   updatedCart: async (req, res) => {
    
     try {
-    
+
       const updatedCart = await Cart.findByIdAndUpdate(
         req.params.id,
         {
-          $set: req.body.cart,
+          $set: req.body.cart
+          
         },
         { upsert: true, new: true }
       );
@@ -44,9 +45,11 @@ const routes = {
 
   //GET User Cart
   getUserCart: async (req, res) => {
+
     try {
-   
-      const cart = await Cart.findOne({ userId: req.params.id });
+      
+      const cart = await Cart.findOne({ _id: req.params.id });
+  
       res.status(200).json(cart.products);
     } catch (err) {
       res.status(500).json(err);

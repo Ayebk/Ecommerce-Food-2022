@@ -37,7 +37,6 @@ export const searchProducts = async (dispatch, text) => {
 
   try {
     const res = await publicRequest.get(`/products/search/` + text);
-
     dispatch({ type: ActionTypes.SUCESS_SEARCH_PRODUCTS, payload: res.data });
   } catch (error) {
     dispatch(returnErrors(error.response.data, error.response.status));

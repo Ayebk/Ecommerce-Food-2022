@@ -30,7 +30,7 @@ import { userRequest } from "../requestMethods";
 //MUI
 import { CheckCircleOutlined, Clear } from "@mui/icons-material";
 import { Backdrop, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
+import Box from '@mui/material/Box';
 import Modal from "@mui/material/Modal";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -630,7 +630,6 @@ const Cart = () => {
 
   return (
     <Container>
-      <Navbar />
       <Advertisement />
       <Title>הסל שלך</Title>
       <Wrapper>
@@ -781,7 +780,7 @@ const Cart = () => {
           >
             כנראה נהייתם רעבים מכל המוצרים שאספתם בסל, גם אני. <br />
             <br />
-            השבתנו את התשלום לאור האנשים שיקפצו לשלם ולצערינו מוצרים אלו הינם רק
+            אין כרגע את  אפשרות לתשלום לאור האנשים שיקפצו לשלם ולצערינו מוצרים אלו הינם רק
             כהדגמה בלבד. <br />
             <br />
             (הינכם משתמשים באבטיפוס של האפליקציה)
@@ -816,7 +815,6 @@ const Cart = () => {
           ) : null}
         </Payment> */}
       </DisbaledDiv>
-      <Footer />
     </Container>
   );
 };

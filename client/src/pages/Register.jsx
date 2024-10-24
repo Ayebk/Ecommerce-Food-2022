@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   background-color: #a0d3f8;
 `;
 const WrapperContainer = styled.div`
-  height: 70vh;
+  height: 85vh;
   background-color: #a0d3f8;
   border: solid #a0d3f8 8px;
 
@@ -145,7 +145,6 @@ const Register = () => {
 
   return (
     <Container>
-      <Navbar />
       <Advertisement />
 
       <WrapperContainer>
@@ -156,7 +155,7 @@ const Register = () => {
               required
               type="username"
               pattern="[A-Za-z]+.{5,}"
-              title=" אנא הזן רק באנגלית כאורך 5 תווים"
+              title="  אנא הזן רק באנגלית כאורך 6 תווים "
               placeholder="שם פרטי"
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -171,7 +170,7 @@ const Register = () => {
               required
               type="password"
               pattern="(?=.*\d)(?=.*[A-Z]).{8,}"
-              title="כל סיסמה חייבת להכיל לפחות 8 תווים עם אות גדולה "
+              title="כל סיסמה חייבת להכיל לפחות 8 תווים עם מספרים ואות גדולה "
               placeholder=" סיסמה"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -179,6 +178,8 @@ const Register = () => {
               required
               type="password"
               placeholder=" אימות סיסמה"
+              pattern={password}
+              title="סיסמאות לא תואמות, אנא ודא את סיסמתך"
               onChange={(e) => setPasswordAgain(e.target.value)}
             />
 
@@ -186,7 +187,6 @@ const Register = () => {
           </Form>
         </Wrapper>
       </WrapperContainer>
-      <Footer />
     </Container>
   );
 };

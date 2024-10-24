@@ -19,9 +19,9 @@ export const authReducer = (state = initialState, { type, payload }) => {
         failedProcess: false,
       };
 
-    case ActionTypes.LOGIN_SUCCESS:
+    case ActionTypes.LOGIN_SUCCESS: 
     case ActionTypes.REGISTER_SUCCESS:
-      Object.assign(state, payload);
+
 
       return {
         ...state,

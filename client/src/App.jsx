@@ -5,6 +5,7 @@ import ProductList from "./pages/ProductList";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
+import styled from "styled-components";
 
 //POPUP
 import { ToastContainer, toast } from "react-toastify";
@@ -17,7 +18,22 @@ import {
   Navigate,
 } from "react-router-dom";
 import Stores from "./pages/Stores";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
+const Container = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContentWrapper = styled.div`
+  min-height: 90vh;
+`;
+const FooterWrapper = styled.div`
+  margin-top: auto;
+  height: 100%;
+`;
 function App() {
   const user = false;
 
@@ -40,31 +56,39 @@ function App() {
         rtl={false}
         limit="1"
       />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/search/:text" element={<Search />} />
-        <Route path="/search/:text" element={<Search />} />
-        <Route path="/stores" element={<Stores />} />
-        <Route path="/products/:category" element={<ProductList />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/cart/:id" element={<Cart />} />
-        <Route
-          path="/login"
-          element={
-            <LoginWrapper currentUser={user}>
-              <Login />
-            </LoginWrapper>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <RegisterWrapper currentUser={user}>
-              <Register />
-            </RegisterWrapper>
-          }
-        />
-      </Routes>
+      <Container>
+        <Navbar />
+        <ContentWrapper>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/search/:text" element={<Search />} />
+            <Route path="/search/:text" element={<Search />} />
+            <Route path="/stores" element={<Stores />} />
+            <Route path="/products/:category" element={<ProductList />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/cart/:id" element={<Cart />} />
+            <Route
+              path="/login"
+              element={
+                <LoginWrapper currentUser={user}>
+                  <Login />
+                </LoginWrapper>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RegisterWrapper currentUser={user}>
+                  <Register />
+                </RegisterWrapper>
+              }
+            />
+          </Routes>
+        </ContentWrapper>
+        <FooterWrapper>
+          <Footer />
+        </FooterWrapper>
+      </Container>
     </Router>
   );
 }

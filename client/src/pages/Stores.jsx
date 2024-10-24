@@ -81,7 +81,6 @@ const Stores = () => {
 
   return (
     <Container>
-      <Navbar />
       <Advertisement />
 
       <Title> הכירו את החנויות והרשתות שפועלים איתנו</Title>
@@ -99,7 +98,6 @@ const Stores = () => {
           </Store>
         ))}
       </StoresWrapper>
-      <Footer />
     </Container>
   );
 };

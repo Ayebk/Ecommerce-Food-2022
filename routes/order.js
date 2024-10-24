@@ -23,7 +23,7 @@ const {
 
 router.post(
   "/",
-  verfityToken, 
+  verifyTokenAndAdmin, 
   createOrder
 );
 

@@ -53,6 +53,7 @@ export const productReducer = (state = initialState, { type, payload }) => {
         isLoading: true,
       };
     case ActionTypes.SUCESS_SEARCH_PRODUCTS:
+      
       return {
         ...state,
         productsSearched: payload,
