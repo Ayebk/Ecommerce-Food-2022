@@ -10,7 +10,7 @@ const BASE_URL = "https://ecommerce-food-now-dce4d2ac51b1.herokuapp.com/api/";
 
 
 
-  
+
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
@@ -20,7 +20,13 @@ export const userRequest = axios.create({
   baseURL: BASE_URL
 });
 
-userRequest.defaults.headers.common["token"] =
-  "Bearer " + localStorage.getItem("token");
+  
 
 
+userRequest.interceptors.request.use(function (config) {
+  config.headers.Authorization = "Bearer " + localStorage.getItem("token")
+  console.log(config)
+  return config;
+}, function (error) {
+  return Promise.reject(error);
+});
