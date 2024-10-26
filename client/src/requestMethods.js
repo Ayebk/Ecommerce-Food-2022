@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_URL = "https://ecommerce-food-now-dce4d2ac51b1.herokuapp.com/api/"; 
-const BASE_URL = "http://localhost:3000/api/"; 
+const BASE_URL = "https://ecommerce-food-now-dce4d2ac51b1.herokuapp.com/api/"; 
+// const BASE_URL = "http://localhost:3000/api/"; 
 
 
 // const BASE_URL = process.env.NODE_ENV === "production"
