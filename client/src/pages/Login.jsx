@@ -141,7 +141,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await loginUser(dispatch, { email, password }).then((res) => {console.log(res)
-        getCart(dispatch, res._id).then(navigate("/"));
+        getCart(dispatch, res._id);
       });
     } catch (e){
       console.log(e)
