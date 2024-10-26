@@ -25,7 +25,6 @@ export const userRequest = axios.create({
 
 userRequest.interceptors.request.use(function (config) {
   config.headers.Authorization = "Bearer " + localStorage.getItem("token")
-  console.log(config)
   return config;
 }, function (error) {
   return Promise.reject(error);
