@@ -732,10 +732,7 @@ const Cart = () => {
         open={openModal}
         onClose={handleCloseModal}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        slotProps={{ backdrop: { timeout: 500 }, BackdropComponent:{Backdrop} }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -759,10 +756,8 @@ const Cart = () => {
         open={openModalDisbaled}
         onClose={handleCloseModalDisbaled}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        slotProps={{ backdrop: { timeout: 500 }, BackdropComponent:{Backdrop} }}
+        
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
